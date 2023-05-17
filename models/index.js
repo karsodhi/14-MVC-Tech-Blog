@@ -1,38 +1,23 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const User = require("./user")
+const Blog = require("./blog")
+const Comment = require("./comment")
 
-class Dish extends Model {}
+User.hasMany(Blog, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE"
+});
+Blog.hasMany(User, {
+  foreignKey: "user_id"
+});
+User.hasMany(Comment, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE"
+});
+Comment.belongsTo(User, {
+  foreignKey: "user_id"
+})
 
-Dish.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    dish_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    guest_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    has_nuts: {
-      type: DataTypes.BOOLEAN,
-    },
-  },
-  {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'dish',
-  }
-);
 
-module.exports = Dish;
+module.exports = {
+  User, Blog
+};

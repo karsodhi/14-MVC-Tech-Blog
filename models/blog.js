@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Dish extends Model {}
+class Blog extends Model {}
 
-Dish.init(
+Blog.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,7 +11,7 @@ Dish.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    dish_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -19,20 +19,25 @@ Dish.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    guest_name: {
-      type: DataTypes.STRING,
+    date_created: {
+      type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: Datatypes.NOW,
     },
-    has_nuts: {
-      type: DataTypes.BOOLEAN,
+    user_id: {
+      type: Datatypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'dish',
+    modelName: 'blog',
   }
 );
 
-module.exports = Dish;
+module.exports = Blog;
