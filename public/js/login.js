@@ -1,32 +1,55 @@
-async function newFormHandler(event) {
+const loginFormHandler = async (event) => {
   event.preventDefault();
-  const dish_name = document.querySelector('#dish_name').value;
-  const description = document.querySelector('#description').value;
-  const guest_name = document.querySelector('#guest_name').value;
-  // The following is a ternary operator. It checks to see if has_nuts is checked. If it is, it will return true, otherwise, it will return false.
-  const has_nuts = document.querySelector('#has_nuts:checked') ? true : false;
-  // Send fetch request to add a new dish
-  const response = await fetch(`/api/dish`, {
-    method: 'POST',
-    body: JSON.stringify({
-      dish_name,
-      description,
-      guest_name,
-      has_nuts,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  console.log('FRONT END RESPONSE', response)
-  //if the dish is added, the 'all' template will be rerendered
-  if (response.ok) {
-    // document.location.replace('/');
-    console.log('FRONT END hiiiiii')
-  } else {
-    alert('Failed to add dish');
-  }
-}
 
-document.querySelector('.new-dish-form').addEventListener('submit', newFormHandler);
-  
+  const email = document.querySelector('#email-login').value.trim();
+  const password = document.querySelector('#password-login').value.trim();
+  if (email && password) {
+    const response = await fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      alert('you did it');
+      document.location.replace("/profile");
+    } else {
+      alert('Failed to log in.');
+    }
+  }
+};
+
+const signupFormHandler = async (event) => {
+  event.preventDefault();
+
+  const username = document.querySelector('#username-signup').value.trim();
+  const email = document.querySelector('#email-signup').value.trim();
+  const password = document.querySelector('#password-signup').value.trim();
+
+  console.log(username, email, password);
+
+  if (username && email && password) {
+    const response = await fetch('/signup', {
+      method: 'POST',
+      body: JSON.stringify({ username, email, password }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    console.log(response);
+    if (response.ok) {
+      // alert('you did it');
+      document.location.replace("/profile");
+    } else {
+      // alert('Failed to sign up.');
+    }
+    console.log(response)
+  }
+};
+
+
+document
+  .querySelector('.login-form')
+  .addEventListener('submit', loginFormHandler);
+
+document
+  .querySelector('.signup-form')
+  .addEventListener('submit', signupFormHandler);
