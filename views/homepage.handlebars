@@ -1,63 +1,34 @@
-<div class='menu-container'>
-  <div class='card-header col-md-10'>
-    <h2>
-      &#127869 Current Menu
-    </h2>
-  </div>
-  {{#each dishes as |dish|}}
-    <div class='dish col-md-5'>
-      <p>
-        {{dish.id}}.
-        {{dish.dish_name}}
-      </p>
-    </div>
-    <div class='col-md-7'>
-      <p>
-        Guest:
-        {{dish.guest_name}}
-      </p>
-    </div>
-  {{/each}}
-  <div class='add-dish-container'>
-    <h2>
-      RSVP with the dish you plan to bring!
-    </h2>
-    <form class='new-dish-form'>
-      <label for='dish_name'>
-        Dish Name:
-      </label>
-      <br />
-      <textarea id='dish_name' name='dish_name' rows='2' cols='30'>
-        {{dish_name}}
-      </textarea>
-      <br />
-      <label for='description'>
-        Description:
-      </label>
-      <br />
-      <textarea id='description' name='description' rows='5' cols='30'>
-        {{description}}
-      </textarea>
-      <br />
-      <label for='guest_name'>
-        Guest Name:
-      </label>
-      <br />
-      <textarea id='guest_name' name='guest_name' rows='2' cols='30'>
-        {{guest_name}}
-      </textarea>
-      <br />
-      <br />
-      <input type='checkbox' id='has_nuts' name='has_nuts' value='true' />
-      <label for='has_nuts'>
-        Check box if this dish contains nuts
-      </label>
-      <br />
-      <button type='submit' value='Submit'>
-        Submit
-      </button>
-    </form>
-  </div>
+<div class="search-bar">
+  <form class="word-search">
+    <input class="word-input" type="search" placeholder="  &#x1F50E    Start typing to look up a word !" size="45">
+    {{!-- <button class="search-button" type="submit">Search</button> --}}
+  </form>
 </div>
-<!-- This is the form for adding a new dish -->
-<script src='/js/add-dish.js'></script>
+<section class="save-delete-buttons">
+  <div class="button-1">
+    <button class="clear-btn">Clear</button>
+  </div>
+  <div class="button-2">
+    <button class="save-button">Add to Vault</button>
+  </div>
+</section>
+
+<container class="main">
+
+  <container class="left-column">
+    <div class="word-info">
+    </div>
+  </container>
+
+  <container class="vocab-vault">
+    {{#each savedWords as |saved|}}
+    <div class='word-card'>
+      <h2 class='saved-word'>{{saved.word}}</h2>
+      <button class="delete-button">Delete</button>
+    </div>
+    {{/each}}
+  </container>
+{{!-- replaced with blog stuff --}}
+</container>
+
+<script src="../public/js/logout.js"></script>

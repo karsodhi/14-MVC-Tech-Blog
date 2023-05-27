@@ -1,32 +1,23 @@
-async function newFormHandler(event) {
-  event.preventDefault();
-  const dish_name = document.querySelector('#dish_name').value;
-  const description = document.querySelector('#description').value;
-  const guest_name = document.querySelector('#guest_name').value;
-  // The following is a ternary operator. It checks to see if has_nuts is checked. If it is, it will return true, otherwise, it will return false.
-  const has_nuts = document.querySelector('#has_nuts:checked') ? true : false;
-  // Send fetch request to add a new dish
-  const response = await fetch(`/api/dish`, {
-    method: 'POST',
-    body: JSON.stringify({
-      dish_name,
-      description,
-      guest_name,
-      has_nuts,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  console.log('FRONT END RESPONSE', response)
-  //if the dish is added, the 'all' template will be rerendered
-  if (response.ok) {
-    // document.location.replace('/');
-    console.log('FRONT END hiiiiii')
-  } else {
-    alert('Failed to add dish');
+const commentHandler = async (e) => {
+  e.preventDefault();
+  const commentText = document.querySelector("#comment-description").value.trim()
+  if (commentText === true) {
+    const res = await fetch(`/api/comments`, {
+      method: "POST",
+      body: JSON.stringify({ commentText }),
+      headers: {
+        "Content-Type":"application/json",
+      },
+    });
+
+    if (res.ok){
+      document.location.replace("/")
+    } else {
+      alert ("failed to create a comment")
+    }
   }
 }
 
-document.querySelector('.new-dish-form').addEventListener('submit', newFormHandler);
-  
+document
+  .querySelector("#newCommentForm")
+  .addEventListener("submit",commentHandler)

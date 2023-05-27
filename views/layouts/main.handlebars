@@ -1,21 +1,31 @@
 <head>
   <meta charset="UTF-8">
-  <title>Potluck Party</title>
+  <title>Tech Blog</title>
+
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+    <header>
       <h1>
-        &#127881 Potluck Party! &#127881
+        Tech Blog
       </h1>
+      {{#if loggedIn}}
+      <button class="logout-button">Logout</button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
     </header>
-      <main class="container container-fluid mt-5">
-        {{{ body }}}
-      </main>
+    <main class="container">
+      {{{ body }}}
+    </main>
   </div>
-  </body>
+
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
 
 </html>
