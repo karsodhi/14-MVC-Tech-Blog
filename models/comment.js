@@ -18,10 +18,10 @@ Comment.init(
         date_created: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: Datatypes.NOW,
+            defaultValue: DataTypes.NOW,
         },
         user_id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: "user",
                 key: "id",

@@ -1,7 +1,7 @@
 # 14-MVC-Tech-Blog
 
 ## Description
-
+This app allows you to create a username and log in and make a new blog.  It also allows you to view other blog posts as well.
   
 
 ## Installation
@@ -16,15 +16,14 @@ Start the server by running npm start.
 
 Open a web browser and go to http://localhost:3000.
 
-## Usage
-
-
-## Screenshots
-
-
 ## Links
 
+Repo Link
+
+Live Link on Heroku 
+
 ## Credits
+Had help with TA's and Tutor
 
-
+## Screenshots
 
