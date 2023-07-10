@@ -1,0 +1,28 @@
+body {
+    background-image: linear-gradient(to right, blue;
+}
+
+header,
+.project:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+a {
+    color: rgb(209, 209, 209);
+}
+
+.title {
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin: 1rem;
+
+}
+
+.center {
+    text-align: center;
+    margin-top: 2rem;
+}
